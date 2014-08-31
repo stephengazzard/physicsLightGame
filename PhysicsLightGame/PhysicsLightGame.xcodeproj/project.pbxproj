@@ -403,6 +403,7 @@
 				BCD8175319B392C600EFB1D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BCD8175419B392C600EFB1D9 /* Build configuration list for PBXNativeTarget "PhysicsLightGameTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +412,7 @@
 				BCD8175619B392C600EFB1D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
