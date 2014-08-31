@@ -19,9 +19,13 @@ class GameScene: SKScene {
     var gameOver : Bool = false
     var gameOverLabel : SKLabelNode? = nil
 
+    var levelIndex : NSInteger = 0
+    var owningViewController : GameViewController? = nil
+
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
         endPoint = self.scene.childNodeWithName("end") as SKNode?
+        endPoint?.hidden = true
         gameOverLabel = self.scene.childNodeWithName("gameOverLabel") as SKLabelNode?
         gameOverLabel?.hidden = true
     }
@@ -72,6 +76,10 @@ class GameScene: SKScene {
             gameOver = true
             gameOverLabel?.hidden = false
             self.scene.physicsWorld.speed = 0
+
+            self.scene.runAction(SKAction.sequence([SKAction.waitForDuration(1), SKAction.runBlock{
+                self.owningViewController!.loadLevel( self.levelIndex + 1)
+                }]))
         }
     }
 }
