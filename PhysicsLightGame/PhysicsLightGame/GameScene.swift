@@ -15,8 +15,15 @@ class GameScene: SKScene {
     var robot : SKSpriteNode? = nil
     var robotVelocity : CGVector = CGVectorMake(0, 0)
 
+    var endPoint : SKNode? = nil
+    var gameOver : Bool = false
+    var gameOverLabel : SKLabelNode? = nil
+
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
+        endPoint = self.scene.childNodeWithName("end") as SKNode?
+        gameOverLabel = self.scene.childNodeWithName("gameOverLabel") as SKLabelNode?
+        gameOverLabel?.hidden = true
     }
 
     func moveRobotWithTouches(touches : NSSet, withEvent event:UIEvent) -> Void {
@@ -53,6 +60,18 @@ class GameScene: SKScene {
     }
    
     override func update(currentTime: CFTimeInterval) {
-        robot?.physicsBody.velocity.dx = robotVelocity.dx
+        if (gameOver) {
+            robot?.physicsBody.velocity = CGVectorMake(0, 0)
+            return
+        }
+
+        if (robot == nil || endPoint == nil) { return }
+
+        robot!.physicsBody.velocity.dx = robotVelocity.dx
+        if (CGRectIntersectsRect(robot!.frame, endPoint!.frame)) {
+            gameOver = true
+            gameOverLabel?.hidden = false
+            self.scene.physicsWorld.speed = 0
+        }
     }
 }
