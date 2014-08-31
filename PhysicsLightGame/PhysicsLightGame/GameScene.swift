@@ -25,12 +25,16 @@ class GameScene: SKScene {
             let firstTouch = touches.anyObject() as UITouch
             let touchPosition = firstTouch.locationInView(firstTouch.view)
             if (touchPosition.x < CGRectGetWidth(firstTouch.view.frame) / 2) {
-                robotVelocity.dx = -200;
+                robotVelocity.dx = -400;
             } else {
-                robotVelocity.dx = 200
+                robotVelocity.dx = 400
             }
         case 2:
-            robot?.physicsBody.applyImpulse(CGVectorMake(0, 400))
+            if (robot?.physicsBody.velocity.dy <= 0) {
+                robot?.physicsBody.applyImpulse(CGVectorMake(0, 200))
+            } else {
+                robot?.physicsBody.applyImpulse(CGVectorMake(0, 50))
+            }
         default:
             break;
         }
