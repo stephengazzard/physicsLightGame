@@ -24,6 +24,7 @@ class GameScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
+        robot?.physicsBody.allowsRotation = false
         endPoint = self.scene.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
         gameOverLabel = self.scene.childNodeWithName("gameOverLabel") as SKLabelNode?

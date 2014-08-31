@@ -14,6 +14,7 @@
 		BCD8174019B392C600EFB1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCD8173E19B392C600EFB1D9 /* Main.storyboard */; };
 		BCD8174219B392C600EFB1D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCD8174119B392C600EFB1D9 /* Images.xcassets */; };
 		BCD8174E19B392C600EFB1D9 /* PhysicsLightGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8174D19B392C600EFB1D9 /* PhysicsLightGameTests.swift */; };
+		BCE6D66A19B3CC77006D0FB5 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = BCE6D66919B3CC77006D0FB5 /* Level1.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		BCD8174719B392C600EFB1D9 /* PhysicsLightGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhysicsLightGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD8174C19B392C600EFB1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCD8174D19B392C600EFB1D9 /* PhysicsLightGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsLightGameTests.swift; sourceTree = "<group>"; };
+		BCE6D66919B3CC77006D0FB5 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +81,8 @@
 		BCD8173319B392C600EFB1D9 /* PhysicsLightGame */ = {
 			isa = PBXGroup;
 			children = (
+				BCE6D66B19B3CC81006D0FB5 /* Levels */,
 				BCD8173619B392C600EFB1D9 /* AppDelegate.swift */,
-				BCD8173819B392C600EFB1D9 /* Level0.sks */,
 				BCD8173A19B392C600EFB1D9 /* GameScene.swift */,
 				BCD8173C19B392C600EFB1D9 /* GameViewController.swift */,
 				BCD8173E19B392C600EFB1D9 /* Main.storyboard */,
@@ -113,6 +115,15 @@
 				BCD8174C19B392C600EFB1D9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BCE6D66B19B3CC81006D0FB5 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				BCD8173819B392C600EFB1D9 /* Level0.sks */,
+				BCE6D66919B3CC77006D0FB5 /* Level1.sks */,
+			);
+			name = Levels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +208,7 @@
 			files = (
 				BCD8174219B392C600EFB1D9 /* Images.xcassets in Resources */,
 				BCD8173919B392C600EFB1D9 /* Level0.sks in Resources */,
+				BCE6D66A19B3CC77006D0FB5 /* Level1.sks in Resources */,
 				BCD8174019B392C600EFB1D9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
