@@ -9,19 +9,37 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
 
+    var robot : SKSpriteNode? = nil
+    var robotVelocity : CGVector = CGVectorMake(0, 0)
+
+    override func didMoveToView(view: SKView) {
+        robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
+    }
+
+    func moveRobotWithTouches(touches : NSSet, withEvent event:UIEvent) -> Void {
+        let firstTouch = touches.anyObject() as UITouch
+        let touchPosition = firstTouch.locationInView(firstTouch.view)
+        if (touchPosition.x < CGRectGetWidth(firstTouch.view.frame) / 2) {
+            robotVelocity.dx = -100;
+        } else {
+            robotVelocity.dx = 100
+        }
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-        
-        for touch: AnyObject in touches {
-            
-        }
+        moveRobotWithTouches(touches, withEvent: event)
+    }
+
+    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
+        moveRobotWithTouches(touches, withEvent: event)
+    }
+
+    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
+        robotVelocity.dx = 0
     }
    
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+        robot?.physicsBody.velocity.dx = robotVelocity.dx
     }
 }
