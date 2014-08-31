@@ -14,6 +14,7 @@ class GameScene: SKScene {
 
     var robot : SKSpriteNode? = nil
     var robotVelocity : CGVector = CGVectorMake(0, 0)
+    var startPoint : CGPoint = CGPointZero
 
     var endPoint : SKNode? = nil
     var gameOver : Bool = false
@@ -25,6 +26,9 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
         robot?.physicsBody.allowsRotation = false
+        if let aRobot = robot {
+            startPoint = aRobot.position
+        }
         endPoint = self.scene.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
         gameOverLabel = self.scene.childNodeWithName("gameOverLabel") as SKLabelNode?
@@ -81,6 +85,11 @@ class GameScene: SKScene {
             self.scene.runAction(SKAction.sequence([SKAction.waitForDuration(1), SKAction.runBlock{
                 self.owningViewController!.loadLevel( self.levelIndex + 1)
                 }]))
+        }
+
+        if CGRectGetMaxX(robot!.frame) < 0 || CGRectGetMaxY(robot!.frame) < 0 || CGRectGetMinX(robot!.frame) > self.frame.size.width || CGRectGetMinY(robot!.frame) > self.frame.size.height {
+            robot?.physicsBody.velocity = CGVector(0, 0)
+            robot?.position = startPoint
         }
     }
 }
