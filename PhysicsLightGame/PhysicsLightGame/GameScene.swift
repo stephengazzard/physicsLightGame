@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+
+
 class GameScene: SKScene {
 
     var robot : SKSpriteNode? = nil
@@ -18,12 +20,19 @@ class GameScene: SKScene {
     }
 
     func moveRobotWithTouches(touches : NSSet, withEvent event:UIEvent) -> Void {
-        let firstTouch = touches.anyObject() as UITouch
-        let touchPosition = firstTouch.locationInView(firstTouch.view)
-        if (touchPosition.x < CGRectGetWidth(firstTouch.view.frame) / 2) {
-            robotVelocity.dx = -100;
-        } else {
-            robotVelocity.dx = 100
+        switch touches.count {
+        case 1:
+            let firstTouch = touches.anyObject() as UITouch
+            let touchPosition = firstTouch.locationInView(firstTouch.view)
+            if (touchPosition.x < CGRectGetWidth(firstTouch.view.frame) / 2) {
+                robotVelocity.dx = -200;
+            } else {
+                robotVelocity.dx = 200
+            }
+        case 2:
+            robot?.physicsBody.applyImpulse(CGVectorMake(0, 400))
+        default:
+            break;
         }
     }
     
