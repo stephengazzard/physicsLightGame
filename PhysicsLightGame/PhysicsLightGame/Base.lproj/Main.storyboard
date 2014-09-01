@@ -16,20 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YOU WIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gp-oH-fEE">
-                                <rect key="frame" x="165.5" y="28" width="267" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU WIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gp-oH-fEE">
+                                <rect key="frame" x="166.5" y="28" width="267" height="72"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="60"/>
                                 <color key="textColor" red="0.94509810209274292" green="1" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieR-ka-MHn">
+                                <rect key="frame" x="264" y="550" width="72" height="30"/>
+                                <state key="normal" title="Drop Light">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="8Gp-oH-fEE" secondAttribute="centerX" id="Arr-fy-un0"/>
+                            <constraint firstItem="b3d-qh-BLL" firstAttribute="top" secondItem="ieR-ka-MHn" secondAttribute="bottom" constant="20" id="Cj4-pM-4oE"/>
                             <constraint firstItem="8Gp-oH-fEE" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" constant="8" id="k5o-cv-xge"/>
+                            <constraint firstAttribute="centerX" secondItem="ieR-ka-MHn" secondAttribute="centerX" id="zKK-EZ-Xby"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lightButton" destination="ieR-ka-MHn" id="Uy3-Sn-m1k"/>
                         <outlet property="winLabel" destination="8Gp-oH-fEE" id="CrR-dN-0en"/>
                     </connections>
                 </viewController>

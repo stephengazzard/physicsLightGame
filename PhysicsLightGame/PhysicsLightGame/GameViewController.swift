@@ -27,7 +27,10 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
+    var currentScene : GameScene? = nil
+
     @IBOutlet var winLabel : UILabel? = nil
+    @IBOutlet var lightButton : UIButton? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +50,11 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             scene.owningViewController = self
             scene.levelIndex = index
-            scene.physicsWorld.gravity.dy = -5
 
             skView.presentScene(scene)
 
             self.winLabel?.hidden = true
+            self.currentScene = scene
         } else {
             loadLevel(0)
         }
@@ -59,6 +62,10 @@ class GameViewController: UIViewController {
 
     func showWinLabel() -> Void {
         self.winLabel?.hidden = false
+    }
+
+    func setLightButtonVisible(visible : Bool) {
+        self.lightButton?.hidden = !visible
     }
 
     override func shouldAutorotate() -> Bool {
@@ -80,5 +87,9 @@ class GameViewController: UIViewController {
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+
+    @IBAction func dropLight() -> Void {
+        self.currentScene?.dropLight()
     }
 }

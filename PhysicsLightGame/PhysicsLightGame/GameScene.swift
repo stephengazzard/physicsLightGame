@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var robot : SKSpriteNode? = nil
     var robotVelocity : CGVector = CGVectorMake(0, 0)
@@ -25,6 +25,8 @@ class GameScene: SKScene {
 
     let rootNode : SKNode = SKNode()
 
+    var numLights = 0
+
 
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
@@ -40,9 +42,15 @@ class GameScene: SKScene {
             if (childNode != rootNode) {
                 childNode.removeFromParent()
                 rootNode.addChild(childNode)
+                if (childNode.physicsBody != nil) {
+                    childNode.physicsBody.contactTestBitMask = 1
+                }
             }
         }
         totalLevelSize = rootNode.calculateAccumulatedFrame().size
+
+        self.physicsWorld.gravity.dy = -5
+        self.physicsWorld.contactDelegate = self
     }
 
     func moveRobotWithTouches() -> Void {
@@ -114,5 +122,29 @@ class GameScene: SKScene {
             center.y += CGRectGetHeight(self.frame) / 2
             self.rootNode.position = center;
         }
+    }
+
+    func didBeginContact(contact: SKPhysicsContact!) {
+        if (contact.bodyA.node.name == nil || contact.bodyB.node.name == nil) { return }
+
+        if (contact.bodyA.node.name == "light" && contact.bodyB.node == robot) || (contact.bodyB.node.name == "light" && contact.bodyA.node == robot) {
+            numLights++
+            self.owningViewController?.setLightButtonVisible(numLights > 0)
+
+            if (contact.bodyA.node.name == "light") {
+                contact.bodyA.node.removeFromParent()
+            } else {
+                contact.bodyB.node.removeFromParent()
+            }
+        }
+    }
+
+    func didEndContact(contact: SKPhysicsContact!) {
+
+    }
+
+    func dropLight() -> Void {
+        self.numLights--
+        self.owningViewController?.setLightButtonVisible(numLights > 0)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC3176E219B4138E00E76EAF /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC3176E119B4138E00E76EAF /* Level2.sks */; };
 		BCD8173719B392C600EFB1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8173619B392C600EFB1D9 /* AppDelegate.swift */; };
 		BCD8173919B392C600EFB1D9 /* Level0.sks in Resources */ = {isa = PBXBuildFile; fileRef = BCD8173819B392C600EFB1D9 /* Level0.sks */; };
 		BCD8173B19B392C600EFB1D9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8173A19B392C600EFB1D9 /* GameScene.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC3176E119B4138E00E76EAF /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		BCD8173119B392C600EFB1D9 /* PhysicsLightGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsLightGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD8173519B392C600EFB1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCD8173619B392C600EFB1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				BCD8173819B392C600EFB1D9 /* Level0.sks */,
 				BCE6D66919B3CC77006D0FB5 /* Level1.sks */,
+				BC3176E119B4138E00E76EAF /* Level2.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				BCD8173919B392C600EFB1D9 /* Level0.sks in Resources */,
 				BCE6D66A19B3CC77006D0FB5 /* Level1.sks in Resources */,
 				BCD8174019B392C600EFB1D9 /* Main.storyboard in Resources */,
+				BC3176E219B4138E00E76EAF /* Level2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
