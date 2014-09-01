@@ -36,6 +36,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         endPoint = self.scene.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
+
+        if let background = self.scene.childNodeWithName("background") as? SKSpriteNode {
+            background.normalTexture = background.texture.textureByGeneratingNormalMap()
+        }
         self.addChild(rootNode)
         for var i = self.children.count - 1; i >= 0; i-- {
             let childNode = self.children[i] as SKNode
@@ -51,6 +55,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.physicsWorld.gravity.dy = -5
         self.physicsWorld.contactDelegate = self
+
+
     }
 
     func moveRobotWithTouches() -> Void {
