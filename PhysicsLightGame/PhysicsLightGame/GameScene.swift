@@ -22,8 +22,12 @@ class GameScene: SKScene {
 
     var levelIndex : NSInteger = 0
     var owningViewController : GameViewController? = nil
+    var totalLevelSize : CGSize = CGSizeZero
 
     var currentTouches : NSMutableSet = NSMutableSet()
+
+    let rootNode : SKNode = SKNode()
+
 
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
@@ -35,6 +39,15 @@ class GameScene: SKScene {
         endPoint?.hidden = true
         gameOverLabel = self.scene.childNodeWithName("gameOverLabel") as SKLabelNode?
         gameOverLabel?.hidden = true
+        self.addChild(rootNode)
+        for var i = self.children.count - 1; i >= 0; i-- {
+            let childNode = self.children[i] as SKNode
+            if (childNode != rootNode) {
+                childNode.removeFromParent()
+                rootNode.addChild(childNode)
+            }
+        }
+        totalLevelSize = rootNode.calculateAccumulatedFrame().size
     }
 
     func moveRobotWithTouches() -> Void {
@@ -90,9 +103,23 @@ class GameScene: SKScene {
 
         self.moveRobotWithTouches()
 
-        if CGRectGetMaxX(robot!.frame) < 0 || CGRectGetMaxY(robot!.frame) < 0 || CGRectGetMinX(robot!.frame) > self.frame.size.width || CGRectGetMinY(robot!.frame) > self.frame.size.height + CGRectGetHeight(robot!.frame) {
+        if CGRectGetMaxX(robot!.frame) < 0 {
             robot?.physicsBody.velocity = CGVector(0, 0)
             robot?.position = startPoint
+        }
+        centerWorldOnRobot()
+    }
+
+    func centerWorldOnRobot() -> Void {
+        if let aRobot = robot {
+            let totalFrame = self.scene.calculateAccumulatedFrame()
+            println("\(totalFrame)")
+            var center = CGPointMake(-CGRectGetMidX(aRobot.frame), -CGRectGetMidY(aRobot.frame))
+            center.x += CGRectGetWidth(self.frame) / 2
+            center.y += CGRectGetHeight(self.frame) / 2
+//            center.x = max(center.x, CGRectGetWidth(totalFrame) - self.size.width)
+//            center.y = min(center.y, -(CGRectGetHeight(totalFrame) - CGRectGetHeight(self.frame) / 2))
+            self.rootNode.position = center;
         }
     }
 }

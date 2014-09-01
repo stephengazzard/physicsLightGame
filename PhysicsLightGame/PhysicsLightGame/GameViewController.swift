@@ -45,6 +45,7 @@ class GameViewController: UIViewController {
             scene.scaleMode = .AspectFill
             scene.owningViewController = self
             scene.levelIndex = index
+            scene.physicsWorld.gravity.dy = -5
 
             skView.presentScene(scene)
         } else {
