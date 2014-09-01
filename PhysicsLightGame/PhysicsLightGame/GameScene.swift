@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import SceneKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
@@ -39,7 +40,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if let background = self.scene.childNodeWithName("background") as? SKSpriteNode {
             background.normalTexture = background.texture.textureByGeneratingNormalMap()
+        } else {
+            var background3D = SK3DNode(viewportSize: self.size)
+            background3D.scnScene = SCNScene(named: "planet.dae")
+//            self.addChild(background3D)
+            background3D.zPosition = -1
         }
+
         self.addChild(rootNode)
         for var i = self.children.count - 1; i >= 0; i-- {
             let childNode = self.children[i] as SKNode
