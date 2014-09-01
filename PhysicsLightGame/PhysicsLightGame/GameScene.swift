@@ -152,7 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             light.categoryBitMask = 1
             light.lightColor = UIColor.orangeColor()
             light.position = CGPointMake(CGRectGetMidX(aRobot.frame), CGRectGetMidY(aRobot.frame))
-            self.addChild(light)
+            self.rootNode.addChild(light)
         }
     }
 }
