@@ -110,6 +110,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             robot?.physicsBody.velocity = CGVector(0, 0)
             robot?.position = startPoint
         }
+    }
+
+    override func didSimulatePhysics() {
         centerWorldOnRobot()
     }
 
