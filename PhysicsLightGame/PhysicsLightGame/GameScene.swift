@@ -31,8 +31,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
-        robot?.physicsBody.allowsRotation = false
         if let aRobot = robot {
+            aRobot.physicsBody.allowsRotation = false
+            aRobot.shader = SKShader(fileNamed: "flat.fsh")
             startPoint = aRobot.position
         }
         endPoint = self.scene.childNodeWithName("end") as SKNode?
