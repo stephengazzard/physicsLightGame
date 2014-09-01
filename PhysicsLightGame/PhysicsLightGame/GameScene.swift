@@ -8,8 +8,6 @@
 
 import SpriteKit
 
-
-
 class GameScene: SKScene {
 
     var robot : SKSpriteNode? = nil
@@ -18,7 +16,6 @@ class GameScene: SKScene {
 
     var endPoint : SKNode? = nil
     var gameOver : Bool = false
-    var gameOverLabel : SKLabelNode? = nil
 
     var levelIndex : NSInteger = 0
     var owningViewController : GameViewController? = nil
@@ -37,8 +34,6 @@ class GameScene: SKScene {
         }
         endPoint = self.scene.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
-        gameOverLabel = self.scene.childNodeWithName("gameOverLabel") as SKLabelNode?
-        gameOverLabel?.hidden = true
         self.addChild(rootNode)
         for var i = self.children.count - 1; i >= 0; i-- {
             let childNode = self.children[i] as SKNode
@@ -93,7 +88,7 @@ class GameScene: SKScene {
         robot!.physicsBody.velocity.dx = robotVelocity.dx
         if (CGRectIntersectsRect(robot!.frame, endPoint!.frame)) {
             gameOver = true
-            gameOverLabel?.hidden = false
+            self.owningViewController?.showWinLabel()
             self.scene.physicsWorld.speed = 0
 
             self.scene.runAction(SKAction.sequence([SKAction.waitForDuration(1), SKAction.runBlock{
@@ -117,8 +112,6 @@ class GameScene: SKScene {
             var center = CGPointMake(-CGRectGetMidX(aRobot.frame), -CGRectGetMidY(aRobot.frame))
             center.x += CGRectGetWidth(self.frame) / 2
             center.y += CGRectGetHeight(self.frame) / 2
-//            center.x = max(center.x, CGRectGetWidth(totalFrame) - self.size.width)
-//            center.y = min(center.y, -(CGRectGetHeight(totalFrame) - CGRectGetHeight(self.frame) / 2))
             self.rootNode.position = center;
         }
     }

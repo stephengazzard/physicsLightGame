@@ -27,6 +27,8 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
+    @IBOutlet var winLabel : UILabel? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,9 +50,15 @@ class GameViewController: UIViewController {
             scene.physicsWorld.gravity.dy = -5
 
             skView.presentScene(scene)
+
+            self.winLabel?.hidden = true
         } else {
             loadLevel(0)
         }
+    }
+
+    func showWinLabel() -> Void {
+        self.winLabel?.hidden = false
     }
 
     override func shouldAutorotate() -> Bool {
