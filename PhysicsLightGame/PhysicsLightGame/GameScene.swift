@@ -143,7 +143,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func dropLight() -> Void {
-        self.numLights--
-        self.owningViewController?.setLightButtonVisible(numLights > 0)
+        if let aRobot = robot {
+            self.numLights--
+            self.owningViewController?.setLightButtonVisible(numLights > 0)
+
+            let light = SKLightNode()
+            light.falloff = 1.5
+            light.categoryBitMask = 1
+            light.lightColor = UIColor.orangeColor()
+            light.position = CGPointMake(CGRectGetMidX(aRobot.frame), CGRectGetMidY(aRobot.frame))
+            self.addChild(light)
+        }
     }
 }
