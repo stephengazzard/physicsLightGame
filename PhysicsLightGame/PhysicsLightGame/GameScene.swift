@@ -116,7 +116,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func centerWorldOnRobot() -> Void {
         if let aRobot = robot {
             let totalFrame = self.scene.calculateAccumulatedFrame()
-            println("\(totalFrame)")
             var center = CGPointMake(-CGRectGetMidX(aRobot.frame), -CGRectGetMidY(aRobot.frame))
             center.x += CGRectGetWidth(self.frame) / 2
             center.y += CGRectGetHeight(self.frame) / 2
