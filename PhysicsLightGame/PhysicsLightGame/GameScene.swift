@@ -106,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.moveRobotWithTouches()
 
-        if CGRectGetMaxX(robot!.frame) < 0 {
+        if CGRectGetMaxY(robot!.frame) < 0 {
             robot?.physicsBody.velocity = CGVector(0, 0)
             robot?.position = startPoint
         }
@@ -122,6 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var center = CGPointMake(-CGRectGetMidX(aRobot.frame), -CGRectGetMidY(aRobot.frame))
             center.x += CGRectGetWidth(self.frame) / 2
             center.y += CGRectGetHeight(self.frame) / 2
+            center.y = min(center.y, 0)
             self.rootNode.position = center;
         }
     }
