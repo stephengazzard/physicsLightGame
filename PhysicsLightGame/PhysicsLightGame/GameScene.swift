@@ -23,6 +23,8 @@ class GameScene: SKScene {
     var levelIndex : NSInteger = 0
     var owningViewController : GameViewController? = nil
 
+    var currentTouches : NSMutableSet = NSMutableSet()
+
     override func didMoveToView(view: SKView) {
         robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
         robot?.physicsBody.allowsRotation = false
@@ -35,10 +37,10 @@ class GameScene: SKScene {
         gameOverLabel?.hidden = true
     }
 
-    func moveRobotWithTouches(touches : NSSet, withEvent event:UIEvent) -> Void {
-        switch touches.count {
+    func moveRobotWithTouches() -> Void {
+        switch self.currentTouches.count {
         case 1:
-            let firstTouch = touches.anyObject() as UITouch
+            let firstTouch = self.currentTouches.anyObject() as UITouch
             let touchPosition = firstTouch.locationInView(firstTouch.view)
             if (touchPosition.x < CGRectGetWidth(firstTouch.view.frame) / 2) {
                 robotVelocity.dx = -400;
@@ -47,9 +49,9 @@ class GameScene: SKScene {
             }
         case 2:
             if (robot?.physicsBody.velocity.dy <= 0) {
-                robot?.physicsBody.applyImpulse(CGVectorMake(0, 200))
+                robot?.physicsBody.applyImpulse(CGVectorMake(0, 100))
             } else {
-                robot?.physicsBody.applyImpulse(CGVectorMake(0, 50))
+                robot?.physicsBody.applyImpulse(CGVectorMake(0, 10))
             }
         default:
             break;
@@ -57,14 +59,13 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        moveRobotWithTouches(touches, withEvent: event)
-    }
-
-    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
-        moveRobotWithTouches(touches, withEvent: event)
+        self.currentTouches.addObjectsFromArray(touches.allObjects)
     }
 
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
+        for touch in touches {
+            self.currentTouches.removeObject(touch)
+        }
         robotVelocity.dx = 0
     }
    
@@ -87,7 +88,9 @@ class GameScene: SKScene {
                 }]))
         }
 
-        if CGRectGetMaxX(robot!.frame) < 0 || CGRectGetMaxY(robot!.frame) < 0 || CGRectGetMinX(robot!.frame) > self.frame.size.width || CGRectGetMinY(robot!.frame) > self.frame.size.height {
+        self.moveRobotWithTouches()
+
+        if CGRectGetMaxX(robot!.frame) < 0 || CGRectGetMaxY(robot!.frame) < 0 || CGRectGetMinX(robot!.frame) > self.frame.size.width || CGRectGetMinY(robot!.frame) > self.frame.size.height + CGRectGetHeight(robot!.frame) {
             robot?.physicsBody.velocity = CGVector(0, 0)
             robot?.position = startPoint
         }
