@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var robot : SKSpriteNode? = nil
     var robotVelocity : CGVector = CGVectorMake(0, 0)
     var startPoint : CGPoint = CGPointZero
+    
 
     var endPoint : SKNode? = nil
     var gameOver : Bool = false
@@ -35,6 +36,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             aRobot.physicsBody.allowsRotation = false
             aRobot.shader = SKShader(fileNamed: "flat.fsh")
             startPoint = aRobot.position
+
+//            let robotSmoke = SKEmitterNode(fileNamed: "robotSmoke")
+//            aRobot.addChild(robotSmoke)
         }
         endPoint = self.scene.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
