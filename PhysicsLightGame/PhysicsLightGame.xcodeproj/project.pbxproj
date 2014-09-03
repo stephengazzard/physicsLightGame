@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		BC3176E219B4138E00E76EAF /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC3176E119B4138E00E76EAF /* Level2.sks */; };
 		BC3176E419B4CAD100E76EAF /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC3176E319B4CAD100E76EAF /* Level3.sks */; };
+		BC5C22FA19B6C2B900864847 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC5C22F819B6C2B900864847 /* spark.sks */; };
+		BC5C22FB19B6C2B900864847 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = BC5C22F919B6C2B900864847 /* spark.png */; };
 		BC6F931619B4F38D007419A6 /* planet.dae in Resources */ = {isa = PBXBuildFile; fileRef = BC6F931519B4F38D007419A6 /* planet.dae */; };
 		BC6F931919B5033D007419A6 /* flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BC6F931819B5033D007419A6 /* flat.fsh */; };
-		BC7DFFAF19B530D100113C2D /* robotSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC7DFFAD19B530D100113C2D /* robotSmoke.sks */; };
-		BC7DFFB019B530D100113C2D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7DFFAE19B530D100113C2D /* spark.png */; };
 		BCD8173719B392C600EFB1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8173619B392C600EFB1D9 /* AppDelegate.swift */; };
 		BCD8173919B392C600EFB1D9 /* Level0.sks in Resources */ = {isa = PBXBuildFile; fileRef = BCD8173819B392C600EFB1D9 /* Level0.sks */; };
 		BCD8173B19B392C600EFB1D9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8173A19B392C600EFB1D9 /* GameScene.swift */; };
@@ -36,10 +36,10 @@
 /* Begin PBXFileReference section */
 		BC3176E119B4138E00E76EAF /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		BC3176E319B4CAD100E76EAF /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
+		BC5C22F819B6C2B900864847 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
+		BC5C22F919B6C2B900864847 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		BC6F931519B4F38D007419A6 /* planet.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = planet.dae; sourceTree = "<group>"; };
 		BC6F931819B5033D007419A6 /* flat.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = flat.fsh; sourceTree = "<group>"; };
-		BC7DFFAD19B530D100113C2D /* robotSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = robotSmoke.sks; sourceTree = "<group>"; };
-		BC7DFFAE19B530D100113C2D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		BCD8173119B392C600EFB1D9 /* PhysicsLightGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsLightGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD8173519B392C600EFB1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCD8173619B392C600EFB1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +80,15 @@
 			name = Shaders;
 			sourceTree = "<group>";
 		};
+		BCA480C419B6C1DA00CD3912 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				BC5C22F819B6C2B900864847 /* spark.sks */,
+				BC5C22F919B6C2B900864847 /* spark.png */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
 		BCD8172819B392C600EFB1D9 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +110,7 @@
 		BCD8173319B392C600EFB1D9 /* PhysicsLightGame */ = {
 			isa = PBXGroup;
 			children = (
+				BCA480C419B6C1DA00CD3912 /* Particles */,
 				BC6F931719B502CE007419A6 /* Shaders */,
 				BC6F931519B4F38D007419A6 /* planet.dae */,
 				BCE6D66B19B3CC81006D0FB5 /* Levels */,
@@ -110,8 +120,6 @@
 				BCD8173E19B392C600EFB1D9 /* Main.storyboard */,
 				BCD8174119B392C600EFB1D9 /* Images.xcassets */,
 				BCD8173419B392C600EFB1D9 /* Supporting Files */,
-				BC7DFFAD19B530D100113C2D /* robotSmoke.sks */,
-				BC7DFFAE19B530D100113C2D /* spark.png */,
 			);
 			path = PhysicsLightGame;
 			sourceTree = "<group>";
@@ -233,11 +241,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC3176E419B4CAD100E76EAF /* Level3.sks in Resources */,
+				BC5C22FA19B6C2B900864847 /* spark.sks in Resources */,
 				BC6F931619B4F38D007419A6 /* planet.dae in Resources */,
 				BCD8174219B392C600EFB1D9 /* Images.xcassets in Resources */,
-				BC7DFFAF19B530D100113C2D /* robotSmoke.sks in Resources */,
 				BCD8173919B392C600EFB1D9 /* Level0.sks in Resources */,
-				BC7DFFB019B530D100113C2D /* spark.png in Resources */,
+				BC5C22FB19B6C2B900864847 /* spark.png in Resources */,
 				BCE6D66A19B3CC77006D0FB5 /* Level1.sks in Resources */,
 				BCD8174019B392C600EFB1D9 /* Main.storyboard in Resources */,
 				BC6F931919B5033D007419A6 /* flat.fsh in Resources */,
