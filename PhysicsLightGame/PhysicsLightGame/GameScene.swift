@@ -31,20 +31,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 
     override func didMoveToView(view: SKView) {
-        robot = self.scene.childNodeWithName("robot") as SKSpriteNode?
+        robot = self.scene?.childNodeWithName("robot") as SKSpriteNode?
         if let aRobot = robot {
-            aRobot.physicsBody.allowsRotation = false
+            aRobot.physicsBody?.allowsRotation = false
             aRobot.shader = SKShader(fileNamed: "flat.fsh")
             startPoint = aRobot.position
 
 //            let robotSmoke = SKEmitterNode(fileNamed: "robotSmoke")
 //            aRobot.addChild(robotSmoke)
         }
-        endPoint = self.scene.childNodeWithName("end") as SKNode?
+        endPoint = self.scene?.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
 
-        if let background = self.scene.childNodeWithName("background") as? SKSpriteNode {
-            background.normalTexture = background.texture.textureByGeneratingNormalMap()
+        if let background = self.scene?.childNodeWithName("background") as? SKSpriteNode {
+            background.normalTexture = background.texture?.textureByGeneratingNormalMap()
         } else {
 //            var background3D = SK3DNode(viewportSize: self.size)
 //            background3D.scnScene = SCNScene(named: "planet.dae")
@@ -59,7 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 childNode.removeFromParent()
                 rootNode.addChild(childNode)
                 if (childNode.physicsBody != nil) {
-                    childNode.physicsBody.contactTestBitMask = 1
+                    childNode.physicsBody?.contactTestBitMask = 1
                 }
             }
         }
@@ -82,10 +82,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 robotVelocity.dx = 400
             }
         case 2:
-            if (robot?.physicsBody.velocity.dy <= 0) {
-                robot?.physicsBody.applyImpulse(CGVectorMake(0, 100))
+            if (robot?.physicsBody?.velocity.dy <= 0) {
+                robot?.physicsBody?.applyImpulse(CGVectorMake(0, 100))
             } else {
-                robot?.physicsBody.applyImpulse(CGVectorMake(0, 10))
+                robot?.physicsBody?.applyImpulse(CGVectorMake(0, 10))
             }
         default:
             break;
@@ -96,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.currentTouches.addObjectsFromArray(touches.allObjects)
     }
 
-    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         for touch in touches {
             self.currentTouches.removeObject(touch)
         }
@@ -105,19 +105,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         if (gameOver) {
-            robot?.physicsBody.velocity = CGVectorMake(0, 0)
+            robot?.physicsBody?.velocity = CGVectorMake(0, 0)
             return
         }
 
         if (robot == nil || endPoint == nil) { return }
 
-        robot!.physicsBody.velocity.dx = robotVelocity.dx
+        robot!.physicsBody?.velocity.dx = robotVelocity.dx
         if (CGRectIntersectsRect(robot!.frame, endPoint!.frame)) {
             gameOver = true
             self.owningViewController?.showWinLabel()
-            self.scene.physicsWorld.speed = 0
+            self.scene?.physicsWorld.speed = 0
 
-            self.scene.runAction(SKAction.sequence([SKAction.waitForDuration(1), SKAction.runBlock{
+            self.scene?.runAction(SKAction.sequence([SKAction.waitForDuration(1), SKAction.runBlock{
                 self.owningViewController!.loadLevel( self.levelIndex + 1)
                 }]))
         }
@@ -125,7 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.moveRobotWithTouches()
 
         if CGRectGetMaxY(robot!.frame) < 0 {
-            robot?.physicsBody.velocity = CGVector(0, 0)
+            robot?.physicsBody?.velocity = CGVector(0, 0)
             robot?.position = startPoint
         }
     }
@@ -136,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func centerWorldOnRobot() -> Void {
         if let aRobot = robot {
-            let totalFrame = self.scene.calculateAccumulatedFrame()
+            let totalFrame = self.scene?.calculateAccumulatedFrame()
             var center = CGPointMake(-CGRectGetMidX(aRobot.frame), -CGRectGetMidY(aRobot.frame))
             center.x += CGRectGetWidth(self.frame) / 2
             center.y += CGRectGetHeight(self.frame) / 2
@@ -146,16 +146,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func didBeginContact(contact: SKPhysicsContact!) {
-        if (contact.bodyA.node.name == nil || contact.bodyB.node.name == nil) { return }
+        if (contact.bodyA.node?.name == nil || contact.bodyB.node?.name == nil) { return }
 
-        if (contact.bodyA.node.name == "light" && contact.bodyB.node == robot) || (contact.bodyB.node.name == "light" && contact.bodyA.node == robot) {
+        if (contact.bodyA.node?.name == "light" && contact.bodyB.node == robot) || (contact.bodyB.node?.name == "light" && contact.bodyA.node == robot) {
             numLights++
             self.owningViewController?.setLightButtonVisible(numLights > 0)
 
-            if (contact.bodyA.node.name == "light") {
-                contact.bodyA.node.removeFromParent()
+            if (contact.bodyA.node?.name == "light") {
+                contact.bodyA.node?.removeFromParent()
             } else {
-                contact.bodyB.node.removeFromParent()
+                contact.bodyB.node?.removeFromParent()
             }
         }
     }
