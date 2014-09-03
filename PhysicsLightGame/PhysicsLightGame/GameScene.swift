@@ -37,9 +37,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             aRobot.shader = SKShader(fileNamed: "flat.fsh")
             startPoint = aRobot.position
 
-            let robotSpark = SKEmitterNode(fileNamed: "spark")
-            aRobot.addChild(robotSpark)
-            robotSpark.position = CGPointMake(0, -CGRectGetHeight(aRobot.frame) / 2)
+//            let robotSpark = SKEmitterNode(fileNamed: "spark")
+//            aRobot.addChild(robotSpark)
+//            robotSpark.position = CGPointMake(0, -CGRectGetHeight(aRobot.frame) / 2)
         }
         endPoint = self.scene?.childNodeWithName("end") as SKNode?
         endPoint?.hidden = true
